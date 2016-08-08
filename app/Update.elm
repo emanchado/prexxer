@@ -46,3 +46,6 @@ update msg model =
         updatedModel = { model | selectedOutfit = updatedSel }
       in
         (updatedModel, redrawDoll (redrawEvent updatedModel))
+
+    SelectDrawer drawer ->
+      ({ model | selectedDrawer = Just drawer }, Cmd.none)

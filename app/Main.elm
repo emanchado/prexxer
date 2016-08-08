@@ -23,7 +23,8 @@ init : Result String Routing.Route -> (Model, Cmd Msg)
 init result =
   let
     route = Routing.routeFromResult result
-    model = Model route initialWardrobe (Dict.fromList [])
+    model =
+      Model route initialWardrobe (Dict.fromList []) (List.head initialWardrobe.drawers)
   in
     (model, redrawDoll (redrawEvent model))
 

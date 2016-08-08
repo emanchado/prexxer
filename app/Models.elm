@@ -6,6 +6,7 @@ import Routing
 
 type alias Drawer =
   { id : String
+  , name : String
   , spriteUrl : String
   }
 
@@ -28,4 +29,5 @@ type alias Model =
   { route : Routing.Route
   , wardrobe : Wardrobe
   , selectedOutfit : Dict String OutfitSelection
+  , selectedDrawer : Maybe Drawer
   }
