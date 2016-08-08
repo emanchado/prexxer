@@ -1,0 +1,11 @@
+{
+    "scripts": {
+        "build": "brunch build",
+    "watch": "brunch watch",
+    "dev": "brunch watch --server"
+  },
+  "devDependencies": {
+    "brunch": "^2.8.2",
+    "elm-brunch": "^0.5.0"
+  }
+}
