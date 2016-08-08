@@ -1,6 +1,6 @@
 module Update exposing (..)
 
-import Dict
+import Dict exposing (Dict)
 
 import Routing
 import Messages exposing (..)
@@ -25,6 +25,14 @@ calculateOutfitSel wardrobe offsets =
     OutfitSelection (floor (offsetX / (toFloat multiplierX)))
       (floor (offsetY / (toFloat multiplierY)))
 
+toggleDictValue : String -> OutfitSelection -> Dict String OutfitSelection -> Dict String OutfitSelection
+toggleDictValue key value dict =
+  case Dict.get key dict of
+    Just v ->
+      if v == value then Dict.remove key dict else Dict.insert key value dict
+    _ ->
+      Dict.insert key value dict
+
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
@@ -34,7 +42,7 @@ update msg model =
     SelectPart drawerId offsets ->
       let
         initialSel = model.selectedOutfit
-        updatedSel = Dict.insert drawerId (calculateOutfitSel model.wardrobe offsets) initialSel
+        updatedSel = toggleDictValue drawerId (calculateOutfitSel model.wardrobe offsets) initialSel
         updatedModel = { model | selectedOutfit = updatedSel }
       in
         (updatedModel, redrawDoll (redrawEvent updatedModel))
