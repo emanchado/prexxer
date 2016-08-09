@@ -4,8 +4,8 @@ import Dict exposing (Dict)
 
 import Routing
 import Messages exposing (..)
-import Models exposing (Model, Wardrobe, OutfitSelection)
-import Ports exposing (redrawDoll, redrawEvent)
+import Models exposing (Model, Wardrobe, OutfitSelection, SquareCoords)
+import Ports exposing (redrawDoll, redrawEvent, drawerContainerCoords, containerCoordsEvent)
 
 urlUpdate : Result String Routing.Route -> Model -> (Model, Cmd Msg)
 urlUpdate result model =
@@ -48,4 +48,24 @@ update msg model =
         (updatedModel, redrawDoll (redrawEvent updatedModel))
 
     SelectDrawer drawer ->
-      ({ model | selectedDrawer = Just drawer }, Cmd.none)
+      ({ model | selectedDrawer = Just drawer.id }, Cmd.none)
+
+    CalculateContentSquare drawerId ->
+      (model, drawerContainerCoords (containerCoordsEvent drawerId model))
+
+    SetDrawerContainer resp ->
+      let
+        modifiedDrawers =
+          List.map
+            (\d ->
+               if d.id == resp.drawerId then
+                 { d |
+                     dimensions = Just resp.dimensions,
+                     contentSquare = Just resp.coords }
+               else
+                 d)
+            model.wardrobe.drawers
+        initialWardrobe = model.wardrobe
+        modifiedWardrobe = { initialWardrobe | drawers = modifiedDrawers }
+      in
+        ({ model | wardrobe = modifiedWardrobe }, Cmd.none)

@@ -7,9 +7,16 @@ header {
     display: flex;
     justify-content: space-between;
 
+    margin: 20px 30px 20px 20px;
+
     font-family: 'AlexBrushRegular';
     font-size: 36px;
     font-style: italic;
+}
+
+.wardrobe-title {
+    font-family: 'GrundschriftBold';
+    font-size: 20px;
 }
 
 #final-doll {
@@ -40,7 +47,7 @@ header {
     background-color: #cbb;
 }
 .drawer-tab.active {
-    background-color: #e9b;
+    background-color: #ebc;
     /* border-bottom: 1px solid white; */
     z-index: 10;
 }
@@ -50,9 +57,32 @@ header {
     top: -1px;
     border: 1px solid black;
     /* border-top: 0; */
-    background-color: #e9b;
+    background-color: #ebc;
 }
 
 .drawer-source-images img {
     display: none;
+}
+
+.part-container {
+    min-width: 50px;
+    min-height: 50px;
+
+    background-color: #fbc;
+}
+
+.parts {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.drawer-part {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 10px;
+    border: 2px solid #e9a;
+
+    background-color: #fbc;
 }

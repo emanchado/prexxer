@@ -1,5 +1,6 @@
 import Navigation
 import Dict
+import List
 
 import Routing
 import Messages exposing (..)
@@ -7,7 +8,7 @@ import Models exposing (Model, OutfitSelection)
 import Views
 import Update
 import Wardrobes exposing (initialWardrobe)
-import Ports exposing (redrawDoll, redrawEvent)
+import Ports exposing (redrawDoll, redrawEvent, foundDrawerContainer)
 
 main : Program Never
 main =
@@ -24,10 +25,16 @@ init result =
   let
     route = Routing.routeFromResult result
     model =
-      Model route initialWardrobe (Dict.fromList []) (List.head initialWardrobe.drawers)
+      Model
+        route
+        initialWardrobe
+        (Dict.fromList [])
+        (case List.head initialWardrobe.drawers of
+           Just drawer -> Just drawer.id
+           Nothing -> Nothing)
   in
     (model, redrawDoll (redrawEvent model))
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  Sub.none
+  foundDrawerContainer SetDrawerContainer
