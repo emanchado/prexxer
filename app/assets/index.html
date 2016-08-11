@@ -13,6 +13,11 @@
     <div id="main"></div>
 
     <script src="js/main.js"></script>
+    <script>
+      var node = document.getElementById("main");
+      var app = Elm.Main.embed(node);
+    </script>
     <script src="js/redrawDoll.js"></script>
+    <script src="js/canvasUtils.js"></script>
   </body>
 </html>
