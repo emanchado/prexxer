@@ -30,5 +30,5 @@ app.ports.redrawDoll.subscribe(function(evt) {
         }
     });
 
-    app.ports.pngExportResponse.send(canvas.toDataURL());
+    app.ports.pngExportResponder.send(canvas.toDataURL());
 });

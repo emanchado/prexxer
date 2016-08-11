@@ -9,33 +9,29 @@ import Html.Events exposing (on, onClick)
 import Models exposing (..)
 import Messages exposing (..)
 
-onClickWithOffsets : ((Float, Float) -> Result String Msg) -> Html.Attribute Msg
-onClickWithOffsets messageFromOffsets =
-  on "click" (customDecoder (object2 (,) ("offsetX" := float) ("offsetY" := float)) messageFromOffsets)
-
 drawerParts : String -> String -> Dimensions -> (Int, Int) -> SquareCoords -> (Int, Int) -> List (Html Msg)
-drawerParts drawerId spriteUrl dimensions partDimensions square offset =
-  if (snd offset) >= dimensions.height then
+drawerParts drawerId spriteUrl spriteDimensions dollSize partSquare offset =
+  if (snd offset) >= spriteDimensions.height then
     []
   else
     let
-      offsetX = square.x + (fst offset) - 1
-      offsetY = square.y + (snd offset) - 1
-      nextHorizontalOffset = (fst offset) + (fst partDimensions)
-      nextOffset = if nextHorizontalOffset >= dimensions.width then
-                     (0, (snd offset) + (snd partDimensions))
+      offsetX = partSquare.x + (fst offset) - 1
+      offsetY = partSquare.y + (snd offset) - 1
+      nextHorizontalOffset = (fst offset) + (fst dollSize)
+      nextOffset = if nextHorizontalOffset >= spriteDimensions.width then
+                     (0, (snd offset) + (snd dollSize))
                    else
                      (nextHorizontalOffset, (snd offset))
     in
       List.append
         [ div [ class "drawer-part"
-              , style [ ("width", (toString (max 50 square.width)) ++ "px")
-                      , ("height", (toString (max 50 square.height)) ++ "px")
+              , style [ ("width", (toString (max 50 partSquare.width)) ++ "px")
+                      , ("height", (toString (max 50 partSquare.height)) ++ "px")
                       ]
               , onClick (SelectPart drawerId offset)
               ]
-            [ div [ style [ ("width", (toString square.width) ++ "px")
-                          , ("height", (toString square.height) ++ "px")
+            [ div [ style [ ("width", (toString partSquare.width) ++ "px")
+                          , ("height", (toString partSquare.height) ++ "px")
                           , ("background-image", "url('" ++ spriteUrl ++ "')")
                           , ("background-repeat", "no-repeat")
                           , ("background-position", "-" ++ (toString offsetX) ++ "px -" ++ (toString offsetY) ++ "px")
@@ -47,9 +43,9 @@ drawerParts drawerId spriteUrl dimensions partDimensions square offset =
         (drawerParts
            drawerId
            spriteUrl
-           dimensions
-           partDimensions
-           square
+           spriteDimensions
+           dollSize
+           partSquare
            nextOffset)
 
 drawerView : Wardrobe -> Drawer -> Html Msg
@@ -70,7 +66,7 @@ drawerView wardrobe drawer =
       Nothing ->
         img [ style [ ("display", "none") ]
             , src drawerImageUrl
-            , on "load" (Json.succeed (CalculateContentSquare drawer.id))
+            , on "load" (Json.succeed (CalculateDrawerContainer drawer.id))
             ] []
 
 drawerTabView : Maybe String -> Drawer -> Html Msg
@@ -81,7 +77,7 @@ drawerTabView maybeDrawerId drawer =
                    Nothing -> ""
   in
     div [ class ("drawer-tab" ++ extraClass)
-        , onClick (SelectDrawer drawer)
+        , onClick (SelectDrawerTab drawer)
         ]
     [ text drawer.name ]
 
@@ -131,12 +127,9 @@ mainApplicationView model =
             , a [ class "button"
                 , downloadAs "doll.png"
                 , href model.dollAsDataURL
-                -- , onClick (PngExport "final-doll")
                 ]
                 [ text "Export" ]
             ]
         , wardrobeView model.wardrobe model.selectedDrawer
         ]
-    -- , pre [ class "debugging" ]
-    --     [ text (toString model) ]
     ]

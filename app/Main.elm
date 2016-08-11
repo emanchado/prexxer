@@ -4,11 +4,11 @@ import List
 
 import Routing
 import Messages exposing (..)
-import Models exposing (Model, OutfitSelection)
+import Models exposing (Model)
 import Views
 import Update
 import Wardrobes exposing (initialWardrobe)
-import Ports exposing (redrawDoll, redrawEvent, foundDrawerContainer, pngExportResponse)
+import Ports exposing (redrawDoll, redrawEvent, drawerContainerResponder, pngExportResponder)
 
 main : Program Never
 main =
@@ -34,11 +34,11 @@ init result =
            Nothing -> Nothing)
         "data:image/png;base64,"
   in
-    (model, redrawDoll (redrawEvent model))
+    (model, redrawDoll (redrawEvent "final-doll" model))
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
   Sub.batch
-    [ foundDrawerContainer SetDrawerContainer
-    , pngExportResponse PngExportResult
+    [ drawerContainerResponder DrawerContainerResult
+    , pngExportResponder PngExportResult
     ]

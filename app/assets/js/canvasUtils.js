@@ -1,7 +1,7 @@
 /*global app*/
 
-app.ports.drawerContainerCoords.subscribe(function(evt) {
-    var imageId = evt.imageId,
+app.ports.calculateDrawerContainer.subscribe(function(evt) {
+    var imageId = evt.drawerId,
         partWidth = evt.partWidth,
         partHeight = evt.partHeight,
         drawerImg = document.getElementById(imageId),
@@ -37,18 +37,17 @@ app.ports.drawerContainerCoords.subscribe(function(evt) {
     var sizes = [maxCoord[0] - minCoord[0] + 1,
                  maxCoord[1] - minCoord[1] + 1];
 
-    // console.log("Sending back", minCoord, "and", maxCoord);
-    app.ports.foundDrawerContainer.send({drawerId: evt.imageId,
-                                         dimensions: {
-                                             width: tmpCanvas.width,
-                                             height: tmpCanvas.height
-                                         },
-                                         coords: {
-                                             x: minCoord[0],
-                                             y: minCoord[1],
-                                             width: sizes[0],
-                                             height: sizes[1]
-                                         }});
+    app.ports.drawerContainerResponder.send({drawerId: evt.drawerId,
+                                             dimensions: {
+                                                 width: tmpCanvas.width,
+                                                 height: tmpCanvas.height
+                                             },
+                                             coords: {
+                                                 x: minCoord[0],
+                                                 y: minCoord[1],
+                                                 width: sizes[0],
+                                                 height: sizes[1]
+                                             }});
 });
 
 function containingSquare(imageData, initialX, initialY, width, height) {

@@ -1,11 +1,11 @@
 module Messages exposing (..)
 
 import Models exposing (..)
-import Ports exposing (DrawerContainerResponse)
+import Ports exposing (DrawerContainerInfo)
 
 type Msg
   = SelectPart String (Float, Float)
-  | SelectDrawer Drawer
-  | CalculateContentSquare String
-  | SetDrawerContainer DrawerContainerResponse
+  | SelectDrawerTab Drawer
+  | CalculateDrawerContainer String
+  | DrawerContainerResult DrawerContainerInfo
   | PngExportResult String

@@ -5,8 +5,8 @@ import Navigation
 
 import Routing
 import Messages exposing (..)
-import Models exposing (Model, Wardrobe, OutfitSelection, SquareCoords)
-import Ports exposing (redrawDoll, redrawEvent, drawerContainerCoords, containerCoordsEvent, pngExport)
+import Models exposing (Model, Wardrobe, OutfitSelection)
+import Ports exposing (redrawDoll, redrawEvent, calculateDrawerContainer, drawerContainerEvent)
 
 urlUpdate : Result String Routing.Route -> Model -> (Model, Cmd Msg)
 urlUpdate result model =
@@ -43,15 +43,15 @@ update msg model =
         updatedSel = toggleDictValue drawerId (calculateOutfitSel model.wardrobe offsets) initialSel
         updatedModel = { model | selectedOutfit = updatedSel }
       in
-        (updatedModel, redrawDoll (redrawEvent updatedModel))
+        (updatedModel, redrawDoll (redrawEvent "final-doll" updatedModel))
 
-    SelectDrawer drawer ->
+    SelectDrawerTab drawer ->
       ({ model | selectedDrawer = Just drawer.id }, Cmd.none)
 
-    CalculateContentSquare drawerId ->
-      (model, drawerContainerCoords (containerCoordsEvent drawerId model))
+    CalculateDrawerContainer drawerId ->
+      (model, calculateDrawerContainer (drawerContainerEvent drawerId model))
 
-    SetDrawerContainer resp ->
+    DrawerContainerResult resp ->
       let
         modifiedDrawers =
           List.map

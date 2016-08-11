@@ -1,4 +1,4 @@
-port module Ports exposing (redrawDoll, redrawEvent, drawerContainerCoords, containerCoordsEvent, foundDrawerContainer, DrawerContainerResponse, pngExport, pngExportResponse)
+port module Ports exposing (redrawDoll, redrawEvent, calculateDrawerContainer, drawerContainerEvent, drawerContainerResponder, DrawerContainerInfo, pngExportResponder)
 
 import Dict
 
@@ -10,13 +10,13 @@ type alias RedrawEvent =
   , outfitSelections : List (String, OutfitSelection)
   }
 
-type alias ContainerCoordsEvent =
-  { imageId : String
+type alias DrawerContainerEvent =
+  { drawerId : String
   , partWidth : Int
   , partHeight : Int
   }
 
-type alias DrawerContainerResponse =
+type alias DrawerContainerInfo =
   { drawerId : String
   , dimensions : Dimensions
   , coords : SquareCoords
@@ -24,22 +24,20 @@ type alias DrawerContainerResponse =
 
 port redrawDoll : RedrawEvent -> Cmd msg
 
-port drawerContainerCoords : ContainerCoordsEvent -> Cmd msg
+port calculateDrawerContainer : DrawerContainerEvent -> Cmd msg
 
-port foundDrawerContainer : (DrawerContainerResponse -> msg) -> Sub msg
+port drawerContainerResponder : (DrawerContainerInfo -> msg) -> Sub msg
 
-port pngExport : String -> Cmd msg
+port pngExportResponder : (String -> msg) -> Sub msg
 
-port pngExportResponse : (String -> msg) -> Sub msg
+redrawEvent : String -> Model -> RedrawEvent
+redrawEvent dollId model =
+  RedrawEvent dollId model.wardrobe (Dict.toList model.selectedOutfit)
 
-redrawEvent : Model -> RedrawEvent
-redrawEvent model =
-  RedrawEvent "final-doll" model.wardrobe (Dict.toList model.selectedOutfit)
-
-containerCoordsEvent : String -> Model -> ContainerCoordsEvent
-containerCoordsEvent drawerId model =
+drawerContainerEvent : String -> Model -> DrawerContainerEvent
+drawerContainerEvent drawerId model =
   let
     partWidth = model.wardrobe.dollWidth + model.wardrobe.spacerWidth
     partHeight = model.wardrobe.dollHeight + model.wardrobe.spacerHeight
   in
-    ContainerCoordsEvent drawerId partWidth partHeight
+    DrawerContainerEvent drawerId partWidth partHeight
