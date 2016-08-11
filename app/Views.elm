@@ -2,8 +2,8 @@ module Views exposing (..)
 
 import List
 import Json.Decode as Json exposing (..)
-import Html exposing (Html, div, header, canvas, img, text, pre)
-import Html.Attributes exposing (id, class, style, width, height, src)
+import Html exposing (Html, div, header, canvas, img, a, text, pre)
+import Html.Attributes exposing (id, class, downloadAs, style, width, height, src, href)
 import Html.Events exposing (on, onClick)
 
 import Models exposing (..)
@@ -128,6 +128,12 @@ mainApplicationView model =
                      , width model.wardrobe.dollWidth
                      , height model.wardrobe.dollHeight
                      ] []
+            , a [ class "button"
+                , downloadAs "doll.png"
+                , href model.dollAsDataURL
+                -- , onClick (PngExport "final-doll")
+                ]
+                [ text "Export" ]
             ]
         , wardrobeView model.wardrobe model.selectedDrawer
         ]

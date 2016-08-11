@@ -1,4 +1,4 @@
-port module Ports exposing (redrawDoll, redrawEvent, drawerContainerCoords, containerCoordsEvent, foundDrawerContainer, DrawerContainerResponse)
+port module Ports exposing (redrawDoll, redrawEvent, drawerContainerCoords, containerCoordsEvent, foundDrawerContainer, DrawerContainerResponse, pngExport, pngExportResponse)
 
 import Dict
 
@@ -27,6 +27,10 @@ port redrawDoll : RedrawEvent -> Cmd msg
 port drawerContainerCoords : ContainerCoordsEvent -> Cmd msg
 
 port foundDrawerContainer : (DrawerContainerResponse -> msg) -> Sub msg
+
+port pngExport : String -> Cmd msg
+
+port pngExportResponse : (String -> msg) -> Sub msg
 
 redrawEvent : Model -> RedrawEvent
 redrawEvent model =

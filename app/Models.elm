@@ -44,4 +44,5 @@ type alias Model =
   , wardrobe : Wardrobe
   , selectedOutfit : Dict String OutfitSelection
   , selectedDrawer : Maybe String
+  , dollAsDataURL: String
   }

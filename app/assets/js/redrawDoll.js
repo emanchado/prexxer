@@ -30,6 +30,8 @@ app.ports.redrawDoll.subscribe(function(evt) {
                                     evt.wardrobe.dollHeight);
         }
     });
+
+    app.ports.pngExportResponse.send(canvas.toDataURL());
 });
 
 app.ports.drawerContainerCoords.subscribe(function(evt) {

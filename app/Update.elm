@@ -1,11 +1,12 @@
 module Update exposing (..)
 
 import Dict exposing (Dict)
+import Navigation
 
 import Routing
 import Messages exposing (..)
 import Models exposing (Model, Wardrobe, OutfitSelection, SquareCoords)
-import Ports exposing (redrawDoll, redrawEvent, drawerContainerCoords, containerCoordsEvent)
+import Ports exposing (redrawDoll, redrawEvent, drawerContainerCoords, containerCoordsEvent, pngExport)
 
 urlUpdate : Result String Routing.Route -> Model -> (Model, Cmd Msg)
 urlUpdate result model =
@@ -36,9 +37,6 @@ toggleDictValue key value dict =
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
-    Refresh ->
-      (model, redrawDoll (redrawEvent model))
-
     SelectPart drawerId offsets ->
       let
         initialSel = model.selectedOutfit
@@ -69,3 +67,6 @@ update msg model =
         modifiedWardrobe = { initialWardrobe | drawers = modifiedDrawers }
       in
         ({ model | wardrobe = modifiedWardrobe }, Cmd.none)
+
+    PngExportResult dataUrl ->
+      ({ model | dollAsDataURL = dataUrl }, Cmd.none)
