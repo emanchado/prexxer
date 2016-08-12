@@ -9540,9 +9540,16 @@ var _emanchado$doll_dresser$Wardrobes$initialWardrobe = A7(
 		[
 			A5(_emanchado$doll_dresser$Models$Drawer, 'skins', 'Skins', 'Sprite Sheet - Skin.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
 			A5(_emanchado$doll_dresser$Models$Drawer, 'eyes', 'Eyes', 'Sprite Sheet - Eyes.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
-			A5(_emanchado$doll_dresser$Models$Drawer, 'hair', 'Hairstyles', 'Sprite Sheet - Hair.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
+			A5(_emanchado$doll_dresser$Models$Drawer, 'hair', 'Hair', 'Sprite Sheet - Hair.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
+			A5(_emanchado$doll_dresser$Models$Drawer, 'hair2', 'Hair 2', 'extras2/Hair Sprite Sheet.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
+			A5(_emanchado$doll_dresser$Models$Drawer, 'hats', 'Hats', 'extras2/Hats Sprite Sheet.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
 			A5(_emanchado$doll_dresser$Models$Drawer, 'tops', 'Tops', 'Sprite Sheet - Tops.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
+			A5(_emanchado$doll_dresser$Models$Drawer, 'tops2', 'Tops 2', 'extras/Tops.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
+			A5(_emanchado$doll_dresser$Models$Drawer, 'tops3', 'Tops 3', 'extras2/Tops Sprite Sheet.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
 			A5(_emanchado$doll_dresser$Models$Drawer, 'bottoms', 'Bottoms', 'Sprite Sheet - Bottoms.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
+			A5(_emanchado$doll_dresser$Models$Drawer, 'bottoms2', 'Bottoms 2', 'extras/Bottoms.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
+			A5(_emanchado$doll_dresser$Models$Drawer, 'facial-hair', 'Facial Hair', 'extras/Facial Hair.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
+			A5(_emanchado$doll_dresser$Models$Drawer, 'facial-hair2', 'Facial Hair 2', 'extras2/Facial Hair Sprite Sheet.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing),
 			A5(_emanchado$doll_dresser$Models$Drawer, 'shoes', 'Shoes', 'Sprite Sheet - Shoes.png', _elm_lang$core$Maybe$Nothing, _elm_lang$core$Maybe$Nothing)
 		]));
 
