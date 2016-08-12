@@ -51,7 +51,7 @@ drawerParts drawerId spriteUrl spriteDimensions dollSize partSquare offset =
 drawerView : Wardrobe -> Drawer -> Html Msg
 drawerView wardrobe drawer =
   let
-    drawerImageUrl = "/wardrobes/" ++ wardrobe.id ++ "/" ++ drawer.spriteUrl
+    drawerImageUrl = "wardrobes/" ++ wardrobe.id ++ "/" ++ drawer.spriteUrl
     partWidth = wardrobe.dollWidth + wardrobe.spacerWidth
     partHeight = wardrobe.dollHeight + wardrobe.spacerHeight
   in
@@ -84,7 +84,7 @@ drawerTabView maybeDrawerId drawer =
 drawerSourceImageView : Wardrobe -> Drawer -> Html Msg
 drawerSourceImageView wardrobe drawer =
   img [ id drawer.id
-      , src ("/wardrobes/" ++ wardrobe.id ++ "/" ++ drawer.spriteUrl)
+      , src ("wardrobes/" ++ wardrobe.id ++ "/" ++ drawer.spriteUrl)
       ] []
 
 wardrobeView : Wardrobe -> Maybe String -> Html Msg
