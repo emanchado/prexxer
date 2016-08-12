@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Prexxer</title>
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" media="screen"
+          href="https://fontlibrary.org/face/grundschrift" type="text/css"/>
+    <link rel="stylesheet" media="screen"
+          href="https://fontlibrary.org/face/alex-brush" type="text/css"/>
+  </head>
+  <body>
+    <div id="main"></div>
+
+    <script src="js/main.js"></script>
+    <script>
+      var node = document.getElementById("main");
+      var app = Elm.Main.embed(node);
+    </script>
+    <script src="js/redrawDoll.js"></script>
+    <script src="js/canvasUtils.js"></script>
+  </body>
+</html>
