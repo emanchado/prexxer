@@ -9076,7 +9076,7 @@ var _emanchado$doll_dresser$Views$drawerSourceImageView = F2(
 					_elm_lang$html$Html_Attributes$src(
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						'/wardrobes/',
+						'wardrobes/',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							wardrobe.id,
@@ -9229,7 +9229,7 @@ var _emanchado$doll_dresser$Views$drawerView = F2(
 		var partWidth = wardrobe.dollWidth + wardrobe.spacerWidth;
 		var drawerImageUrl = A2(
 			_elm_lang$core$Basics_ops['++'],
-			'/wardrobes/',
+			'wardrobes/',
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				wardrobe.id,
