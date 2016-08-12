@@ -15,6 +15,16 @@ set of sprites.
 The name is a portmanteau of "pixel" and "dresser", and is a small
 experiment in [Elm](http://elm-lang.org/).
 
+Using online
+------------
+
+Just visit the URL below:
+
+   https://emanchado.github.io/prexxer/
+
+Again, note that by now you can only use the "Pixel People" sprites,
+but it should not be a lot of work to add other sprites.
+
 Development
 -----------
 
