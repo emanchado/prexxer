@@ -1,7 +1,6 @@
 module Update exposing (..)
 
 import Dict exposing (Dict)
-import Navigation
 
 import Routing
 import Messages exposing (..)
