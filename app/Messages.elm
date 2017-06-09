@@ -1,11 +1,14 @@
 module Messages exposing (..)
 
+import Navigation
 import Models exposing (..)
 import Ports exposing (DrawerContainerInfo)
 
+
 type Msg
-  = SelectPart String (Float, Float)
-  | SelectDrawerTab Drawer
-  | CalculateDrawerContainer String
-  | DrawerContainerResult DrawerContainerInfo
-  | PngExportResult String
+    = UpdateLocation Navigation.Location
+    | SelectPart String (Int, Int)
+    | SelectDrawerTab Drawer
+    | CalculateDrawerContainer String
+    | DrawerContainerResult DrawerContainerInfo
+    | PngExportResult String
